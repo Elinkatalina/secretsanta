@@ -1,3 +1,17 @@
+from flask import Flask
+
+# Initialize Flask app
+app = Flask(__name__)
+
+# Define a route
+@app.route('/')
+def home():
+    return "Hello, world! Your Secret Santa app is running."
+
+if __name__ == "__main__":
+    # Ensure app runs on the correct host and port when deployed
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
 # Store participants and pairings
 participants = []
 pairings = {}
