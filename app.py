@@ -7,7 +7,7 @@ app = Flask(__name__)
 # Define a route
 @app.route('/')
 def home():
-    return "Hello, world! Your Secret Santa app is running."
+    return render_template('index.html')  # This will render index.html
 
 if __name__ == "__main__":
     # Ensure app runs on the correct host and port when deployed
