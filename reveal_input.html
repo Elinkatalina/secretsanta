@@ -9,5 +9,14 @@
         <input type="text" name="name" placeholder="Enter your name" required>
         <button type="submit">See Your Match</button>
     </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 </body>
 </html>
