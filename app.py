@@ -1,9 +1,3 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
-import random
-
-app = Flask(__name__)
-app.secret_key = "secretkey"  # Required for flashing messages
-
 # Store participants and pairings
 participants = []
 pairings = {}
