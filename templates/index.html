@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secret Santa App</title>
+    <title>Hemliga tomten/title>
 </head>
 <body>
-    <h1>Welcome to the Secret Santa App!</h1>
+    <h1>Välkommen till hemliga tomten</h1>
     
     <form method="POST" action="/">
-        <label for="name">Enter your name:</label>
+        <label for="name">Fyll i ditt namn:</label>
         <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
+        <button type="submit">Lägg till</button>
     </form>
 
-    <h2>Participants:</h2>
+    <h2>Deltagare:</h2>
     <ul>
         {% for participant in participants %}
             <li>{{ participant }}</li>
@@ -23,11 +23,11 @@
 
     {% if participants %}
         <form method="POST" action="/generate">
-            <button type="submit">Generate Matches</button>
+            <button type="submit">Matcha</button>
         </form>
 
     <form method="POST" action="/clear" style="margin-top: 10px;">
-            <button type="submit" style="background-color: red; color: white;">Clear Participants</button>
+            <button type="submit" style="background-color: red; color: white;">Ta bort deltagare</button>
         </form>
     {% endif %}
 </body>
