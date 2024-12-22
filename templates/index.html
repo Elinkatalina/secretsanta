@@ -16,7 +16,7 @@
         {% endfor %}
     </ul>
     {% if participants|length >= 2 %}
-        <form action="/generate" method="post">
+        <form action="/reveal" method="post">
             <button type="submit">Generate Matches</button>
         </form>
     {% endif %}
