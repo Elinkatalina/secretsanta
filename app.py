@@ -41,6 +41,13 @@ def check_match():
             return "Name not found. Please try again.", 404
     return render_template('check_form.html')
 
+@app.route('/clear', methods=['POST'])
+def clear_participants():
+    global participants, matches
+    participants = []  # Clear the participants list
+    matches = {}  # Clear the matches
+    return redirect(url_for('index.html'))  # Redirect to the home page
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
@@ -86,14 +93,6 @@ def reveal():
         else:
             flash("Name not found or not a participant!")
     return render_template("reveal_input.html")
-
-
-@app.route('/clear', methods=['POST'])
-def clear_participants():
-    global participants, matches
-    participants = []  # Clear the participants list
-    matches = {}  # Clear the matches
-    return redirect(url_for('index.html'))  # Redirect to the home page
 
 @app.route("/reset")
 def reset():
