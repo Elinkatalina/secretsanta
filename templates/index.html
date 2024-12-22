@@ -4,17 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Righteous&display=swap" rel="stylesheet">
     <title>Hemliga tomten</title>
 </head>
 <body>
-    <h1>Välkommen till hemliga tomten</h1>
+
+    <div class="container">
+    <h1>🎅 Hemliga tomten 🎅</h1>
+    <h3> Lägg till alla deltagare nedan</h3>
+    <h4> Årets budget : 500 kr </h4>
     
+    <div class="formcontainer">
     <form method="POST" action="/">
-        <label for="name">Fyll i ditt namn:</label>
-        <input type="text" id="name" name="name" required>
+        <label for="name">Namn på deltagare</label>
+        <input type="text" id="name" name="name" placeholder="Förnamn" required>
         <button type="submit">Lägg till</button>
     </form>
-
+</div>
     <h2>Deltagare:</h2>
     <ul>
         {% for participant in participants %}
@@ -24,12 +32,13 @@
 
     {% if participants %}
         <form method="POST" action="/generate">
-            <button type="submit">Matcha</button>
+            <button class="random" type="submit">Slumpa</button>
         </form>
 
-    <form method="POST" action="/clear" style="margin-top: 10px;">
-            <button type="submit" style="background-color: red; color: white;">Ta bort deltagare</button>
+    <form method="POST" action="/clear">
+            <button class="delete" type="submit">x Ta bort deltagare</button>
         </form>
     {% endif %}
+    </div>
 </body>
 </html>
