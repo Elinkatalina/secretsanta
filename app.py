@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 import os
 
 # Initialize Flask app
@@ -8,6 +8,12 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def home():
     return render_template('index.html')  # This will render index.html
+        if request.method == 'POST':
+        name = request.form['name']  # Get the name from the form
+        if name and name not in participants:  # Avoid duplicates
+            participants.append(name)  # Add name to participants list
+        return redirect(url_for('home'))  # Redirect to the home page
+    return render_template('index.html', participants=participants)
 
 if __name__ == "__main__":
     # Ensure app runs on the correct host and port when deployed
