@@ -1,33 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Secret Santa</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Santa App</title>
 </head>
 <body>
-    <h1>Secret Santa</h1>
-    <form method="post">
-        <input type="text" name="name" placeholder="Enter participant name" required>
-        <button type="submit">Add Participant</button>
+    <h1>Welcome to the Secret Santa App!</h1>
+    
+    <form method="POST" action="/">
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Submit</button>
     </form>
+
     <h2>Participants:</h2>
     <ul>
         {% for participant in participants %}
             <li>{{ participant }}</li>
         {% endfor %}
     </ul>
-    {% if participants|length >= 2 %}
-        <form action="/reveal" method="post">
+
+    {% if participants %}
+        <form method="POST" action="/generate">
             <button type="submit">Generate Matches</button>
         </form>
     {% endif %}
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
 </body>
 </html>
