@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import os
 import random
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 # In-memory list to store participants
 participants = []
