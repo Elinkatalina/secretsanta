@@ -46,7 +46,8 @@ def clear_participants():
     global participants, matches
     participants = []  # Clear the participants list
     matches = {}  # Clear the matches
-    return redirect(url_for('index.html'))  # Redirect to the home page
+    return redirect(url_for("home"))  # Redirect to the home page
+return render_template("index.html", participants=participants)
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
