@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 # In-memory list to store participants
 participants = []
+matches = {}
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -16,18 +17,29 @@ def home():
         return redirect(url_for('home'))  # Redirect to the home page
     return render_template('index.html', participants=participants)
 
-
-@app.route('/generate', methods=['POST'])
+@app.route('/generate', methods=['POST', 'GET'])
 def generate_matches():
+    global matches
     if len(participants) < 2:
         return "At least two participants are required to generate matches.", 400
-    
+
+    # Shuffle and generate matches
     shuffled = participants[:]
     random.shuffle(shuffled)
-
-    # Generate matches
     matches = {shuffled[i]: shuffled[(i + 1) % len(shuffled)] for i in range(len(shuffled))}
-    return render_template('matches.html', matches=matches)
+
+    return redirect(url_for('check_match'))
+
+@app.route('/check', methods=['GET', 'POST'])
+def check_match():
+    if request.method == 'POST':
+        name = request.form['name']
+        if name in matches:
+            match = matches[name]
+            return render_template('check_match.html', name=name, match=match)
+        else:
+            return "Name not found. Please try again.", 404
+    return render_template('check_form.html')
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
