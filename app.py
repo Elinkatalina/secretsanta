@@ -87,6 +87,14 @@ def reveal():
             flash("Name not found or not a participant!")
     return render_template("reveal_input.html")
 
+
+@app.route('/clear', methods=['POST'])
+def clear_participants():
+    global participants, matches
+    participants = []  # Clear the participants list
+    matches = {}  # Clear the matches
+    return redirect(url_for('home'))  # Redirect to the home page
+
 @app.route("/reset")
 def reset():
     global participants, pairings
