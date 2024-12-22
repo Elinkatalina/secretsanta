@@ -15,6 +15,19 @@ def home():
         return redirect(url_for('home'))  # Redirect to the home page
     return render_template('index.html', participants=participants)
 
+
+@app.route('/generate', methods=['POST'])
+def generate_matches():
+    if len(participants) < 2:
+        return "At least two participants are required to generate matches.", 400
+    
+    shuffled = participants[:]
+    random.shuffle(shuffled)
+
+    # Generate matches
+    matches = {shuffled[i]: shuffled[(i + 1) % len(shuffled)] for i in range(len(shuffled))}
+    return render_template('matches.html', matches=matches)
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
