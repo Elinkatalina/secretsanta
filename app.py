@@ -93,7 +93,7 @@ def clear_participants():
     global participants, matches
     participants = []  # Clear the participants list
     matches = {}  # Clear the matches
-    return redirect(url_for('home'))  # Redirect to the home page
+    return redirect(url_for('index.html'))  # Redirect to the home page
 
 @app.route("/reset")
 def reset():
