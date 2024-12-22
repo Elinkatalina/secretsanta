@@ -1,14 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 
-# Initialize Flask app
 app = Flask(__name__)
 
-# Define a route
+# In-memory list to store participants
+participants = []
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')  # This will render index.html
-        if request.method == 'POST':
+    if request.method == 'POST':
         name = request.form['name']  # Get the name from the form
         if name and name not in participants:  # Avoid duplicates
             participants.append(name)  # Add name to participants list
@@ -16,7 +16,6 @@ def home():
     return render_template('index.html', participants=participants)
 
 if __name__ == "__main__":
-    # Ensure app runs on the correct host and port when deployed
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
 # Store participants and pairings
