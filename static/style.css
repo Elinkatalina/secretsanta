@@ -96,3 +96,23 @@ form {
     height:25px;
     border-radius: 3px;
 }
+
+.listparticipants {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.listparticipants li {
+    margin: 0 15px;
+    background-color: lightblue;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+
